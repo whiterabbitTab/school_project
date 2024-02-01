@@ -1,0 +1,268 @@
+@use 'sass:list';
+
+@mixin text__info() {
+    height: 75%;
+    width: 25%;
+    margin: 0;
+    margin-top: 20%;
+    font-size: 18px;
+}
+
+$images: '../../images/cards/frameworks_main.jpg', '../../images/cards/python_main.jpg', '../../images/cards/libraries_main.jpg';
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 190vh;
+    user-select: none;
+
+    & > span {
+        font-size: 25px;
+        font-weight: 600;
+        color: rgb(227, 245, 63);
+    }
+
+    & > .greeting {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-color: var(--bg-color-night);
+        height: 95vh;
+        user-select: none;
+
+        & > .text__3d {
+            color: rgb(33, 100, 245);
+            white-space: nowrap;
+            top: 5%;
+            left: 1%;
+            margin-bottom: 0;
+            font-size: 8em;
+            font-family: sans-serif;
+            letter-spacing: 0.2em;
+            transition: 0.3s;
+            text-shadow: 1px 1px 0 rgba(227, 245, 63, .2), 1px 2px 0 rgba(227, 245, 63, .2), 1px 3px 0 rgba(227, 245, 63, .2), 1px 4px 0 rgba(227, 245, 63, .2),
+                1px 5px 0 rgba(227, 245, 63, .2), 1px 6px 0 rgba(227, 245, 63, .2), 1px 7px 0 rgba(227, 245, 63, .2), 1px 8px 0 rgba(227, 245, 63, .2),
+                5px 13px 15px black, 5px 13px 25px #808080;
+            cursor: default;
+            animation: text__3d_anim 5s ease 0s 1 normal forwards;
+        }
+
+        & > .text__3d:hover {
+            color: rgb(227, 245, 63);
+            transition: 0.3s;
+            transform: scale(1.05)translate(-1%, -1%);
+            text-shadow: 2px -1px 0 rgb(33, 100, 245), 1px -2px 0 rgb(33, 100, 245), 1px -3px 0 rgb(33, 100, 245),
+                2px -4px 0 rgb(33, 100, 245), 1px -5px 0 rgb(33, 100, 245), 1px -6px 0 rgb(33, 100, 245), 1px -7px 0 rgb(33, 100, 245),
+                2px -8px 0 rgb(33, 100, 245), 5px -13px 15px black, 5px -13px 25px #808080;
+        }
+        
+        & > .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 50vh;
+            font-size: 24px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: rgb(255, 255, 255);
+            margin-bottom: 15vh;
+
+            & > .text__first {
+                @include text__info();
+                position: relative;
+                animation: first_text 1s ease 0s 1 normal forwards;
+                margin-left: 3%;
+            }
+
+            & > .text__second {
+                @include text__info();
+                position: relative;
+                animation: second_text 1s ease 0s 1 normal forwards;
+                margin-right: 3%;
+                margin-bottom: 1%;
+                
+                & > h5 {
+                    margin: 0;
+                    font-size: 25px;
+                }
+
+                & > ol {
+                    list-style: none;
+
+                    & > li {
+                        line-height: 2.5;
+                    }
+
+                    & > li::before {
+                        content: '-';
+                        width: 20px;
+                        height: 1px;
+                        color: rgb(227, 245, 63);
+                    }
+                }
+            }
+
+            & > .python__button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                height: 75%;
+                margin-top: 15%;
+
+                & > h2 {
+                    font-size: 30px;
+                    color: rgb(227, 245, 63);
+                    animation: start_text_anim 3s ease 0s 1 normal forwards;
+                }
+
+                & > .btn__get_started {
+                    width: 220px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 25%;
+                    font-size: 28px;
+                    border: none;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    color: white;
+                    background-color: transparent;
+                    transition: background-color .5s ease, color .5s ease;
+                    animation: btn_start_anim 3s ease 0s 1 normal forwards;
+                }
+
+                & > .btn__get_started:hover {
+                    background-color: rgb(227, 245, 63);
+                    color: var(--bg-color-night);
+
+                }
+            }
+        }
+    }
+
+    & > .main__text {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        background-color: var(--bg-color-night);
+        cursor: default;
+
+        & > h1 {
+            margin: 0 29% 8%;
+            font-size: 70px;
+            font-weight: 600;
+            letter-spacing: 16px;
+            color: white;
+
+            & > span {
+                font-size: 80px;
+                font-weight: 600;
+            }
+        }
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        & .card {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            margin: 0 5% 0;
+            height: 550px;
+            width: 330px;
+            background-color: rgb(48, 48, 51);
+            border-radius: 18px;
+            transition: all .25s ease-in;
+
+            & > div:nth-child(2) {
+                padding: 20px;
+
+                & > h5 {
+                    display: flex;
+                    justify-content: center;
+                    margin: 30px 0 0;
+                    font-size: 20px;
+                    color:rgb(240, 240, 240);
+                }
+
+                & > p {
+                    font-size: 18px;
+                    color: rgb(184, 191, 194)
+                }
+            }
+        }
+
+        & .card:hover {
+            scale: 1.05;
+        }
+    }
+}
+
+@for $k from 1 through 3 {
+    .main__text > div > .card:nth-child(#{$k}) > div:nth-child(1) {
+        background: url(#{list.nth($images, $k)});
+        background-size: 80%;
+        background-position: center;    
+        background-color: black;
+        background-repeat: no-repeat;
+        height: 200px;
+        border-radius: 15px 15px 0 0;
+    }
+}
+
+@keyframes first_text {
+    0% {
+        left: -25%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes second_text {
+    0% {
+        right: -25%;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes btn_start_anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes text__3d_anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes start_text_anim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
