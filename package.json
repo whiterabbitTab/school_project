@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.29",
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "typescript": "^5.3.3"
   }
 }

@@ -1,13 +1,5 @@
 @use 'sass:list';
 
-@mixin text__info() {
-    height: 75%;
-    width: 25%;
-    margin: 0;
-    margin-top: 20%;
-    font-size: 18px;
-}
-
 $images: '../../images/cards/frameworks_main.jpg', '../../images/cards/python_main.jpg', '../../images/cards/libraries_main.jpg';
 
 main {
@@ -15,7 +7,6 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 190vh;
     user-select: none;
 
     & > span {
@@ -28,9 +19,10 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         background-color: var(--bg-color-night);
-        height: 95vh;
+        height: 100vh;
+        width: 100%;
         user-select: none;
 
         & > .text__3d {
@@ -61,47 +53,49 @@ main {
         
         & > .info {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: space-around;
             align-items: center;
             height: 50vh;
+            width: 100%;
             font-size: 24px;
             letter-spacing: 2px;
+            position: relative;
+            bottom: 0;
             font-weight: 600;
             color: rgb(255, 255, 255);
-            margin-bottom: 15vh;
-
-            & > .text__first {
-                @include text__info();
-                position: relative;
-                animation: first_text 1s ease 0s 1 normal forwards;
-                margin-left: 3%;
-            }
 
             & > .text__second {
-                @include text__info();
+                background-color: rgba(0, 0, 0, .1);
+                width: 100%;
+                margin: 0;
+                font-size: 18px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 position: relative;
                 animation: second_text 1s ease 0s 1 normal forwards;
-                margin-right: 3%;
+                margin: 0;
                 margin-bottom: 1%;
+                padding: 3vh 0 3vh;
                 
                 & > h5 {
                     margin: 0;
                     font-size: 25px;
+                    margin-bottom: 25px;
                 }
 
                 & > ol {
+                    display: grid;
+                    grid-template-columns: repeat(5, auto);
+                    width: 100%;
+                    justify-items: center;
                     list-style: none;
+                    padding: 0;
 
                     & > li {
                         line-height: 2.5;
-                    }
-
-                    & > li::before {
-                        content: '-';
-                        width: 20px;
-                        height: 1px;
-                        color: rgb(227, 245, 63);
+                        font-size: 16px;
                     }
                 }
             }
@@ -111,8 +105,7 @@ main {
                 flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
-                height: 75%;
-                margin-top: 15%;
+                height: 55%;
 
                 & > h2 {
                     font-size: 30px;
@@ -121,7 +114,7 @@ main {
                 }
 
                 & > .btn__get_started {
-                    width: 220px;
+                    width: 320px;
                     height: 80px;
                     display: flex;
                     align-items: center;
@@ -149,38 +142,34 @@ main {
     & > .main__text {
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
-        height: 100vh;
         width: 100%;
         margin: 0;
         background-color: var(--bg-color-night);
         cursor: default;
+        padding-bottom: 50px;
 
         & > h1 {
-            margin: 0 29% 8%;
-            font-size: 70px;
+            font-size: 60px;
             font-weight: 600;
             letter-spacing: 16px;
             color: white;
-
-            & > span {
-                font-size: 80px;
-                font-weight: 600;
-            }
         }
 
         & > div {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+            width: 100%;
+            gap: 5%;
         }
 
         & .card {
             display: flex;
             flex-direction: column;
             font-size: 16px;
-            margin: 0 5% 0;
-            height: 550px;
+            // height: 550px;
             width: 330px;
             background-color: rgb(48, 48, 51);
             border-radius: 18px;
@@ -213,7 +202,7 @@ main {
 @for $k from 1 through 3 {
     .main__text > div > .card:nth-child(#{$k}) > div:nth-child(1) {
         background: url(#{list.nth($images, $k)});
-        background-size: 80%;
+        background-size: 90%;
         background-position: center;    
         background-color: black;
         background-repeat: no-repeat;
@@ -266,3 +255,14 @@ main {
         opacity: 1;
     }
 }
+
+@media (width < '1250px') {
+    .text__second > ol {
+        display: grid;
+        grid-template-columns: repeat(2, auto) !important;
+    }
+    .main__text > h1 { 
+        font-size: 40px !important;
+    }
+}   
+

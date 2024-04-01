@@ -1,3 +1,5 @@
+@use '../Docs/Docs.module.scss' as d;
+
 main {
     display: flex;
     flex-direction: column;
@@ -7,20 +9,7 @@ main {
     background-color: rgb(255, 255, 255);
 
     & > aside {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        bottom: 0;
-        font-size: 20px;
-        width: 14%;
-        color: rgb(255, 255, 255);
-        letter-spacing: 5px;    
-        background-color: rgba(46, 46, 46);
-        transition: width .2s ease;
-        animation: aside_anim 1s ease 0s 1 normal forwards;
+        @include d.aside;
 
         & > h1 {
             margin-top: 115px;
@@ -80,14 +69,13 @@ main {
     }
 }
 
-@keyframes aside_anim {
-    from {
-        opacity: 0;
-        left: -500px;
+@include d.aside_animation;
+
+@media (width < 1250px) {
+    .main__practice > aside > .navlink {
+        font-size: 14px !important;
     }
-    to {
-        opacity: 1;
-        left: 0;
+    .main__practice h1 {
+        font-size: 16px !important;
     }
 }
-

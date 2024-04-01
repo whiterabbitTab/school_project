@@ -1,3 +1,45 @@
+@mixin aside() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    font-size: 20px;
+    width: 15%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 5px;    
+    background-color: rgba(46, 46, 46);
+    transition: width .2s ease;
+    animation: aside_anim 1s ease 0s 1 normal forwards;
+}
+
+@mixin aside_media() {
+    @media (width < 1250px) {
+        .main__docs > aside > .navlink {
+            font-size: 14px !important;
+        }
+        .main__docs h1 {
+            font-size: 16px !important;
+        }
+    }
+}
+
+
+@mixin aside_animation() {
+    @keyframes aside_anim {
+        from {
+            opacity: 0;
+            left: -500px;
+        }
+        to {
+            opacity: 1;
+            left: 0;
+        }
+    }
+}
+
 .main__docs {
     display: flex;
     flex-direction: column;
@@ -7,20 +49,7 @@
     background-color: rgb(255, 255, 255);
 
     & > aside {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        bottom: 0;
-        font-size: 20px;
-        width: 14%;
-        color: rgb(255, 255, 255);
-        letter-spacing: 5px;    
-        background-color: rgba(46, 46, 46);
-        transition: width .2s ease;
-        animation: aside_anim 1s ease 0s 1 normal forwards;
+        @include aside;
 
         & > h1 {
             margin-top: 115px;
@@ -80,13 +109,5 @@
     }
 }
 
-@keyframes aside_anim {
-    from {
-        opacity: 0;
-        left: -500px;
-    }
-    to {
-        opacity: 1;
-        left: 0;
-    }
-}
+@include aside_animation;
+@include aside_media();

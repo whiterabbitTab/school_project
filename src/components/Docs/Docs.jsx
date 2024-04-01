@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import {Routes, Route } from 'react-router-dom'
 import styles from './Docs.module.scss'
@@ -18,13 +18,53 @@ export const Docs = () => {
     const headers_docs = ['Первые шаги', 'Переменные', 'Операторы', 'Условия и циклы', 'Строки', 'Списки, кортежи', 'Словари', 'Функции']
     const paths = ['Start', 'Variable', 'Operator', 'Conditions', 'Strings', 'List', 'Dictionaries', 'Functions']
     
+    const aside_ref = useRef();
+    const [width, setWidth] = useState(window.innerWidth)
+
+    const showText = (event) => {
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = ''}, 350)
+            setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = headers_docs[i]}, 350)
+        }
+    }
+
+    const hideText = (event) => {
+        if (width < 1250) {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = ''}, 350)
+                setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = '&#8212;'}, 350)
+            }
+        } else {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = ''}, 350)
+                setTimeout(() => {aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = headers_docs[i]}, 350)
+            }
+        }
+    }
+
+
+    useEffect(() => {
+        if (width < 1250) {
+            for (let i = 0; i < 8; i++) {
+                aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = '&#8212;'
+            }
+        } else {
+            for (let i = 0; i < 8; i++) {
+                aside_ref.current.querySelectorAll(`.${styles.navlink}`)[i].innerHTML = headers_docs[i]
+            }
+        }
+        window.addEventListener('resize', () => {
+            setWidth(window.innerWidth)
+        })
+    }, [width])
+
     return(
         <main className={styles.main__docs} style={{paddingBottom: 150 + 'px'}}>
-            <aside>
+            <aside ref={aside_ref}>
                 <h1>Разделы</h1>
                 {headers_docs.map((d, i) => {
                     return (
-                        <NavLink key={i} className={styles.navlink} to={paths[i]}>{headers_docs[i]}</NavLink>
+                        <NavLink onMouseEnter={showText} onMouseLeave={hideText} key={i} className={styles.navlink} to={paths[i]}>{headers_docs[i]}</NavLink>
                     )
                 })}
             </aside>
